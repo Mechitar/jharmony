@@ -15,10 +15,7 @@ public class Calculator {
 		onlyNumbers(numbers);
 		String delimitedNumbers = numbers.replace(Delimiter.NEW_LINE, Delimiter.COMMA);
 		String commaDelimitedNumbers = replaceDelimitersWithComma(delimiters, delimitedNumbers);
-		System.out.println(commaDelimitedNumbers);
 		return calculateSumOf(commaDelimitedNumbers);
-//		return onlyNumbers(inputText);
-		
 	}
 
 
@@ -70,16 +67,11 @@ public class Calculator {
 		List<String> allDelimiters = new ArrayList<String>();
 		allDelimiters.add(Delimiter.COMMA);
 		if (hasDefinedCustomDelimiterIn(inputText)) {
-			String appliedDelimiter = null;
 			int startIndex = inputText.indexOf(Delimiter.SLASH) + Delimiter.SLASH.length();
 			int endIndex = inputText.indexOf(Delimiter.NEW_LINE);
 			String definedDelimiters = inputText.substring(startIndex, endIndex);
-			System.out.println(definedDelimiters);
 			allDelimiters.addAll( Arrays.asList( definedDelimiters.split("[[\\w]]+")));
-			
-			System.out.println("appliedDelimiter=" + appliedDelimiter);	
 		}
-		System.out.println("allDelimiter=" + allDelimiters);
 		return allDelimiters;
 	}
 
