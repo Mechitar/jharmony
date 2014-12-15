@@ -9,13 +9,13 @@ import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CalculatorTest {
+public class StringCalculatorTest {
 
-	private Calculator calculator;
+	private StringCalculator calculator;
 
 	@Before
 	public void init() {
-		calculator = new Calculator();
+		calculator = new StringCalculator();
 	}
 	@Test
 	public void sumOfEmptyStringIsZero() throws Exception {

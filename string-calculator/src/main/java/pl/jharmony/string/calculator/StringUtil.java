@@ -60,7 +60,7 @@ public class StringUtil {
 	}
 
 	private void justSkipExceptions(NumberFormatException ex) {
-		System.out.println("Oops! Definetely this was not a number." + ex);
+		System.out.println("Oops! Definitely this was not a number." + ex);
 	}
 
 }
