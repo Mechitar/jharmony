@@ -12,38 +12,38 @@ public class BowlingGameTest
 {
 	@Test
 	public void calculateScoreForOneFrame() throws Exception {
-		assertEquals(8, new BowlingGame().has(createFrames(3,5)).calculateScore());
+		assertEquals(8, new BowlingGame().withPlayerResults(createFrames(3,5)).calculateScore());
 	}
 
 	@Test
 	public void calculateTwoFramesScore() throws Exception {
-		assertEquals(10, new BowlingGame().has(createFrames(1,0,4,5)).calculateScore());
+		assertEquals(10, new BowlingGame().withPlayerResults(createFrames(1,0,4,5)).calculateScore());
 	}
 
 	
 	@Test
 	public void calculateBonusForAStrike() throws Exception {
-		assertEquals(28, new BowlingGame().has( createFrames(10,0,5,4)).calculateScore());
+		assertEquals(28, new BowlingGame().withPlayerResults( createFrames(10,0,5,4)).calculateScore());
 	}
 	
 	@Test
 	public void calculateBonusForASpare() throws Exception {
-		assertEquals(23, new BowlingGame().has(createFrames(5,5,4,5)).calculateScore());
+		assertEquals(23, new BowlingGame().withPlayerResults(createFrames(5,5,4,5)).calculateScore());
 	}
 	
 	@Test
 	public void calculateOnesScore() throws Exception {
-		assertEquals(1, new BowlingGame().has(createFrames(1)).calculateScore());
+		assertEquals(1, new BowlingGame().withPlayerResults(createFrames(1)).calculateScore());
 	}
 
 	@Test
 	public void considerThirdRollOfTheTenthFrame() throws Exception {
-		assertEquals(22, new BowlingGame().has(createFrames(new TenthFrame(0,5,5), 10,0,1)).calculateScore());
+		assertEquals(22, new BowlingGame().withPlayerResults(createFrames(new TenthFrame(0,5,5), 10,0,1)).calculateScore());
 	}
 	
 	@Test
 	public void skipThirdRollOfTheTenthFrameIfThereWasNoBonus() throws Exception {
-		assertEquals(7, new BowlingGame().has(createFrames(new TenthFrame(0,5,5), 1,0,1)).calculateScore());
+		assertEquals(7, new BowlingGame().withPlayerResults(createFrames(new TenthFrame(0,5,5), 1,0,1)).calculateScore());
 	}
 	
 	private List<Frame> createFrames( TenthFrame lastFrame, int... pins) {

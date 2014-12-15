@@ -6,7 +6,7 @@ public class BowlingGame {
 
 	private List<? extends Frame> frames;
 
-	public BowlingGame has(List<Frame> frames) {
+	public BowlingGame withPlayerResults(List<Frame> frames) {
 		this.frames = frames;
 		return this;
 	}
@@ -24,7 +24,7 @@ public class BowlingGame {
 	}
 
 	private Frame getNextFrame(int i) {
-		return i< frames.size() -1 ? frames.get(i + 1) : null;
+		return i < frames.size() - 1 ? frames.get(i + 1) : null;
 	}
 
 }
