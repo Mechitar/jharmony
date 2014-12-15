@@ -1,41 +1,55 @@
 package pl.jharmony.string.calculator;
 
-import java.util.StringTokenizer;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringCalculator {
 
-	private String input;
+
+	private Integer limit = null; 
+
+	private boolean rejectNegatives = false;
 	
-	private String numbers;
-
-	private String commaDelimitedNumbers;
+	private List<Integer> allNegatives = new ArrayList<Integer>();
 	
-	public StringCalculator of(String inputText) {
-		this.input= inputText;
-		return this;
-	}
 
-	public StringCalculator replaceAllNewLines() {
-		numbers.replace(Delimiter.NEW_LINE, Delimiter.COMMA);
-		return this;
-	}
-
-
-	private void justSkipExceptions(NumberFormatException ex) {
-		System.out.println("Oops! Definetely this was not a number. Sorry, the parser failed because of: " + ex);
-	}
-
-	public int andCalculateSum() {
+	public int sumOf(List<Integer> numbers) {
 		int sum = 0;
-		StringTokenizer tokenizerToFindNumbers = new StringTokenizer(commaDelimitedNumbers, Delimiter.COMMA);
-		while (tokenizerToFindNumbers.hasMoreElements()) {
-			try {
-				sum += Integer.parseInt(tokenizerToFindNumbers.nextToken());
-			} catch (NumberFormatException ex) {
-				justSkipExceptions(ex);
-			}
+		for (Integer number : numbers) {
+				if (rejectNegatives && number < 0){
+					allNegatives.add(number);
+					number = 0;
+				}
+				if (hasDefinedCustomLimit() && isGreaterThanLimit(number)) {
+					number = 0;
+				}
+				sum += number;
+		}
+		if (!allNegatives.isEmpty()) {
+			throw new NegativesNotAllowed(allNegatives);
 		}
 		return sum;
 	}
 
+	
+	private boolean isGreaterThanLimit(Integer number) {
+		return number > limit;
+	}
+
+	private boolean hasDefinedCustomLimit() {
+		return limit != null;
+	}
+
+	
+	public StringCalculator skipBiggerThan(int limit) {
+		this.limit = limit;
+		return this;
+	}
+
+
+	public StringCalculator rejectNegatives() {
+		this.rejectNegatives = true;
+		return this;
+	}
+	
 }
